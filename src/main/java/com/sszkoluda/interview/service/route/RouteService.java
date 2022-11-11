@@ -18,8 +18,8 @@ public class RouteService {
     private final HistoricRouteRepository historicRouteRepository;
     private final HistoricRouteMapper historicRouteMapper;
 
-    public HistoricRouteDTO findMostRepresentativeRoute() {
-        List<HistoricRoute> allRoutes = historicRouteRepository.findAll();
+    public HistoricRouteDTO findMostRepresentativeRoute(String firstPort, String secondPort) {
+        List<HistoricRoute> allRoutes = historicRouteRepository.findAllRoutesBetweenPorts(firstPort, secondPort);
         HistoricRoute mostRepresentativeRoute = routeFinder.findMostRepresentativeRoute(allRoutes);
         return historicRouteMapper.mapToHistoricRouteDTO(mostRepresentativeRoute);
     }
